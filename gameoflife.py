@@ -11,6 +11,8 @@ class Square():
     def __init__(self, X_coord, Y_coord, white=False):
         self.X_coord = X_coord
         self.Y_coord = Y_coord
+        self.white = white
+
     def is_neigh(self,other):
         if (other.X_coord == self.X_coord) and (abs(other.Y_coord - self.Y_coord)==50):
             return True
@@ -19,8 +21,11 @@ class Square():
         elif abs(other.X_coord - self.X_coord)==50 and abs(other.Y_coord - self.Y_coord)==50:
             return True
         return False
+        
+    def show(self):
+        return (self.X_coord, self.Y_coord, self.white)
    
-myboard = [[Square(i,j) for i in range(0,451,50)] for j in range(0,451,50)]
+myboard = [[Square(j,i) for i in range(0,451,50)] for j in range(0,451,50)]
 
 pygame.draw.rect(screen, (255, 255, 255), r, 1)
 for i in range(10):
@@ -33,6 +38,7 @@ while True:
         if event.type == pygame.MOUSEBUTTONDOWN:
             pos = pygame.mouse.get_pos()
             pygame.draw.rect(screen, (200, 200, 200), pygame.Rect(pos[0]-pos[0]%50, pos[1]-pos[1]%50, 50, 50), 0)
+            myboard[pos[0]//50][pos[1]//50].white = True
 
         if event.type == pygame.QUIT:
             pygame.quit()
