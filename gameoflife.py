@@ -50,6 +50,11 @@ while True:
             myboard[(pos[0]//50)+1][(pos[1]//50)+1].number+=1
             myboard[(pos[0]//50)-1][(pos[1]//50)-1].number+=1
 
+        if event.type == pygame.KEYDOWN:
+            for i in myboard:
+                for j in i:
+                    pass
+
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
