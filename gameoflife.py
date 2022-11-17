@@ -53,7 +53,10 @@ while True:
         if event.type == pygame.KEYDOWN:
             for i in myboard:
                 for j in i:
-                    pass
+                    if j.white:
+                        if j.number<2 or j.number>3:
+                            print("lol")
+                            pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(j.X_coord+1, j.Y_coord+1, 48, 48), 0)
 
         if event.type == pygame.QUIT:
             pygame.quit()
