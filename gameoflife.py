@@ -51,12 +51,33 @@ while True:
             myboard[(pos[0]//50)-1][(pos[1]//50)-1].number+=1
 
         if event.type == pygame.KEYDOWN:
-            for i in myboard:
-                for j in i:
-                    if j.white:
-                        if j.number<2 or j.number>3:
-                            print("lol")
-                            pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(j.X_coord+1, j.Y_coord+1, 48, 48), 0)
+            for i in range(len(myboard)):
+                for j in range(len(myboard[i])):
+                    if myboard[i][j].white:
+                        if myboard[i][j].number<2 or myboard[i][j].number>3:
+                            pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(myboard[i][j].X_coord+1, myboard[i][j].Y_coord+1, 48, 48), 0)
+                            myboard[i][j].white=False
+                            myboard[i][j+1].number-=1
+                            myboard[i][j-1].number-=1
+                            myboard[i+1][j].number-=1
+                            myboard[i-1][j].number-=1
+                            myboard[i+1][j-1].number-=1
+                            myboard[i-1][j+1].number-=1
+                            myboard[i+1][j+1].number-=1
+                            myboard[i-1][j-1].number-=1
+                    else:
+                        if myboard[i][j].number==3:
+                            pygame.draw.rect(screen, (200, 200, 200), pygame.Rect(myboard[i][j].X_coord, myboard[i][j].Y_coord, 50, 50), 0)
+                            myboard[i][j].white=True
+                            myboard[i][j+1].number+=1
+                            myboard[i][j-1].number+=1
+                            myboard[i+1][j].number+=1
+                            myboard[i-1][j].number+=1
+                            myboard[i+1][j-1].number+=1
+                            myboard[i-1][j+1].number+=1
+                            myboard[i+1][j+1].number+=1
+                            myboard[i-1][j-1].number+=1
+
 
         if event.type == pygame.QUIT:
             pygame.quit()
